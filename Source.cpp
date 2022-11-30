@@ -15,7 +15,7 @@ char character(char , int );
 
 
 int main() {
-	cout << "character ('a'-1)" << endl;
+	cout << character ('a',-1) << endl;
 	try
 	{
 		character('a', -1);
@@ -37,7 +37,7 @@ int main() {
 	}
 	catch (invalidCharacterExeption E)
 	{
-		cout << "Error! INVALID CHARACTER EXEPTION" << endl;
+		cout << "Error! invalid characetr exeption" << endl;
 	}
 }
 
@@ -50,6 +50,6 @@ char character(char start, int offset) {
 
 		if( (num < 65 || num>90) && (num < 97 || num>122)) 
 		throw invalidCharacterExeption{};
-		return static_cast<char>(num);
+		return char(num);
 
 }
