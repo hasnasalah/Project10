@@ -24,8 +24,21 @@ int main() {
 		cout << "Error! invalid character exeption" << endl;
 
 	}
-	try{}
-	catch()
+	try
+	{
+		character('?', 5);
+
+	}
+	catch (invalidCharacterExeption E) {
+		cout << "Error! invalid character exeption";
+	}
+	try {
+		character('A', 32);
+	}
+	catch (invalidCharacterExeption E)
+	{
+		cout << "Error! INVALID CHARACTER EXEPTION" << endl;
+	}
 }
 
 char character(char start, int offset) {
