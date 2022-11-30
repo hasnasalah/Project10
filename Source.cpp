@@ -6,6 +6,7 @@ using namespace std;
 
 class invalidCharacterExeption{};
 class invalidRangeExeption {};
+class invalidConversionExeption{};
 // function prototype
 
 char character(char , int );
@@ -14,42 +15,43 @@ char character(char , int );
 
 
 
-int main() {
-	cout << character ('a',-1) << endl;
-	try
-	{
-		character('a', -1);
-	}
-	catch(invalidRangeExeption E) {
-		cout << "Error! invalid character exeption" << endl;
-
-	}
-	try
-	{
-		character('?', 5);
-
-	}
-	catch (invalidCharacterExeption E) {
-		cout << "Error! invalid character exeption";
-	}
-	try {
-		character('A', 32);
-	}
-	catch (invalidCharacterExeption E)
-	{
-		cout << "Error! invalid characetr exeption" << endl;
-	}
+int main(){
+     cout << character ('a',-1) << endl;
+	//cout << character('Z', -1) << endl;
+	//cout << character('A', 32) << endl;
+	return 0;
 }
 
 char character(char start, int offset) {
 	int num;
-	if ((start < 65 || start>90) && (start < 97 || start>122)) 
-		throw invalidCharacterExeption();
+	int ascii = int(start);
 
-		num = start + offset;
+	num = ascii + offset;
+	try {
+		if ((ascii < 65 || ascii>90) && (ascii < 97 || ascii>122))
+			throw invalidCharacterExeption();
 
-		if( (num < 65 || num>90) && (num < 97 || num>122)) 
-		throw invalidCharacterExeption{};
-		return char(num);
+
+		else if ((num < 65 || num>90) && (num < 97 || num>122))
+			throw invalidRangeExeption{};
+
+		else if ((num >= 65 || num >= 90) && (num <= 97 || num >= 1220))
+			throw invalidConversionExeption();
+	} 
+	catch (invalidCharacterExeption a) {
+		cout << " Error!invalid character exeption" << endl;
+	}
+	catch(invalidRangeExeption b )
+	{
+		cout << " Error!invalid Range exeption" << endl;
+	}
+	catch (invalidConversionExeption c)
+	{
+		cout << " Error!invalid conversion exeption" << endl;
+	}
+
+
+
+		return static_cast<char>(num);
 
 }
